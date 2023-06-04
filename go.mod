@@ -1,3 +1,3 @@
-module interpreter_in_go
+module monkey
 
 go 1.20
