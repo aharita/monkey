@@ -1,3 +1,6 @@
 # monkey
 An interpreter in Go
-[From ](https://interpreterbook.com/)
+
+[https://interpreterbook.com](https://interpreterbook.com/)
+
+By Thorsten Ball
