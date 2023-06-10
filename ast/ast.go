@@ -20,6 +20,32 @@ type Expression interface {
 	expressionNode()
 }
 
+type Identifier struct {
+	Token token.Token
+	Value string
+}
+
+type LetStatement struct {
+	Token token.Token
+	Name  *Identifier
+	Value Expression
+}
+
+type ReturnStatement struct {
+	Token       token.Token
+	ReturnValue Expression
+}
+
+type ExpressionStatement struct {
+	Token      token.Token
+	Expression Expression
+}
+
+type IntegerLiteral struct {
+	Token token.Token
+	Value int64
+}
+
 type Program struct {
 	Statements []Statement
 }
@@ -42,12 +68,6 @@ func (p *Program) String() string {
 	return out.String()
 }
 
-type LetStatement struct {
-	Token token.Token
-	Name  *Identifier
-	Value Expression
-}
-
 func (ls *LetStatement) statementNode()       {}
 func (ls *LetStatement) TokenLiteral() string { return ls.Token.Literal }
 func (ls *LetStatement) String() string {
@@ -66,19 +86,9 @@ func (ls *LetStatement) String() string {
 	return out.String()
 }
 
-type Identifier struct {
-	Token token.Token
-	Value string
-}
-
 func (i *Identifier) expressionNode()      {}
 func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
 func (i *Identifier) String() string       { return i.Value }
-
-type ReturnStatement struct {
-	Token       token.Token
-	ReturnValue Expression
-}
 
 func (rs *ReturnStatement) statementNode()       {}
 func (rs *ReturnStatement) TokenLiteral() string { return rs.Token.Literal }
@@ -96,11 +106,6 @@ func (rs *ReturnStatement) String() string {
 	return out.String()
 }
 
-type ExpressionStatement struct {
-	Token      token.Token
-	Expression Expression
-}
-
 func (es *ExpressionStatement) statementNode()       {}
 func (es *ExpressionStatement) TokenLiteral() string { return es.Token.Literal }
 func (es *ExpressionStatement) String() string {
@@ -109,11 +114,6 @@ func (es *ExpressionStatement) String() string {
 	}
 
 	return ""
-}
-
-type IntegerLiteral struct {
-	Token token.Token
-	Value int64
 }
 
 func (il *IntegerLiteral) expressionNode()      {}
