@@ -9,6 +9,7 @@ import (
 
 const (
 	INTEGER_OBJ      = "INTEGER"
+	STRING_OBJ       = "STRING"
 	BOOLEAN_OBJ      = "BOOLEAN"
 	NULL_OBJ         = "NULL"
 	RETURN_VALUE_OBJ = "RETURN_VALUE"
@@ -25,6 +26,10 @@ type Object interface {
 
 type Integer struct {
 	Value int64
+}
+
+type String struct {
+	Value string
 }
 
 type Boolean struct {
@@ -80,3 +85,6 @@ func (f *Function) Inspect() string {
 
 	return out.String()
 }
+
+func (s *String) Type() ObjectType { return STRING_OBJ }
+func (s *String) Inspect() string  { return s.Value }
